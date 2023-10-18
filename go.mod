@@ -5,6 +5,7 @@ go 1.21.3
 require (
 	github.com/charmbracelet/log v0.2.5
 	github.com/defenseunicorns/zarf v0.30.1
+	github.com/opencontainers/image-spec v1.1.0-rc5
 )
 
 require (
@@ -216,7 +217,6 @@ require (
 	github.com/olekukonko/tablewriter v0.0.5 // indirect
 	github.com/open-policy-agent/opa v0.55.0 // indirect
 	github.com/opencontainers/go-digest v1.0.0 // indirect
-	github.com/opencontainers/image-spec v1.1.0-rc5 // indirect
 	github.com/opentracing/opentracing-go v1.2.0 // indirect
 	github.com/otiai10/copy v1.12.0 // indirect
 	github.com/outcaste-io/ristretto v0.2.1 // indirect
