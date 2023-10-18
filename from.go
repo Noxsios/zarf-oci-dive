@@ -57,7 +57,14 @@ func LayersFromRequestedComponents(o *oci.OrasRemote, requestedComponents []stri
 		if err != nil {
 			return nil, fmt.Errorf("failed to fetch images index: %w", err)
 		}
+
+		fmt.Println()
+		l.Infof("index is %s", JSON(index))
+		fmt.Println()
+
 		for image := range images {
+			l.Infof("checking for image %s", image)
+
 			manifestDescriptor := helpers.Find(index.Manifests, func(layer ocispec.Descriptor) bool {
 				return layer.Annotations[ocispec.AnnotationBaseImageName] == image
 			})
