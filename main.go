@@ -67,20 +67,20 @@ func dive(url string) error {
 
 	l.Infof("%s@%s has %d layers", url, manifest.Config.Digest, len(layers))
 
-	for _, layer := range layers {
-		exists, err := remote.Repo().Exists(ctx, layer)
-		if err != nil {
-			return fmt.Errorf("err: %w, layer DNE %s", err, JSON(layer))
-		}
-		if !exists {
-			return fmt.Errorf("layer DNE %s", JSON(layer))
-		}
-		l.Infof("exists: %s", JSON(layer))
-	}
+	// for _, layer := range layers {
+	// 	exists, err := remote.Repo().Exists(ctx, layer)
+	// 	if err != nil {
+	// 		return fmt.Errorf("err: %w, layer DNE %s", err, JSON(layer))
+	// 	}
+	// 	if !exists {
+	// 		return fmt.Errorf("layer DNE %s", JSON(layer))
+	// 	}
+	// 	l.Infof("exists: %s", JSON(layer))
+	// }
 
 	requested := []string{}
 
-	l.Info("all layers exist, now checking LayersFromRequestedComponents returns no errors")
+	// l.Info("all layers exist, now checking LayersFromRequestedComponents returns no errors")
 
 	_, err = LayersFromRequestedComponents(remote, requested)
 	if err != nil {

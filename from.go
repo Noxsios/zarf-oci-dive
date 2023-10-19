@@ -59,7 +59,10 @@ func LayersFromRequestedComponents(o *oci.OrasRemote, requestedComponents []stri
 		}
 
 		fmt.Println()
-		l.Infof("index is %s", JSON(index))
+		l.Info("images in the index:")
+		for _, desc := range index.Manifests {
+			l.Info(desc.Annotations[ocispec.AnnotationBaseImageName])
+		}
 		fmt.Println()
 
 		for image := range images {
@@ -74,7 +77,7 @@ func LayersFromRequestedComponents(o *oci.OrasRemote, requestedComponents []stri
 
 			manifest, err := o.FetchManifest(manifestDescriptor)
 			if err != nil {
-				return nil, fmt.Errorf("failed to fetch manifest: %w, %s", err, JSON(manifestDescriptor))
+				return nil, fmt.Errorf("failed to fetch manifest for %q: %w", image, err)
 			}
 			// Add the manifest and the manifest config layers
 			layers = append(layers, root.Locate(filepath.Join(oci.ZarfPackageImagesBlobsDir, manifestDescriptor.Digest.Encoded())))
